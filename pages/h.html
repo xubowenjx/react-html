@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="../assets/js/react.development.js"></script>
+    <script src="../assets/js/react-dom.development.js"></script>
+    <script src="../assets/js/babel.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let h = React.createElement;
+      let HelloWorld = h('div', null, [
+        h('h1', { className: 'header' }, 'hellow world')
+      ]);
+      ReactDOM.render(HelloWorld, $('#root'));
+    </script>
+  </body>
+</html>
