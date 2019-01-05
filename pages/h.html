@@ -12,10 +12,16 @@
     <div id="root"></div>
     <script type="text/babel">
       let h = React.createElement;
-      let HelloWorld = h('div', null, [
-        h('h1', { className: 'header' }, 'hellow world')
+      let HelloWorld = h("div", null, [
+        h(
+          "h1",
+          {
+            className: 'header footer'
+          },
+          "hellow world"
+        )
       ]);
-      ReactDOM.render(HelloWorld, $('#root'));
+      ReactDOM.render(HelloWorld, $("#root"));
     </script>
   </body>
 </html>
