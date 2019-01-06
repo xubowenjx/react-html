@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="../assets/js/react.development.js"></script>
+    <script src="../assets/js/react-dom.development.js"></script>
+    <script src="../assets/js/babel.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class ListItem extends React.Component {
+        render() {
+          return (
+            <div className="list-item" onClick={this.props.click}>
+              {this.props.text}
+            </div>
+          );
+        }
+      }
+      class List extends React.Component {
+        handleClick = value => {
+          alert(value);
+        };
+        render() {
+          let list = this.props.list;
+          if (list && list.length > 0) {
+            return list.map(el => (
+              <ListItem
+                text={el}
+                key={el}
+                click={this.handleClick.bind(this, el)}
+              />
+            ));
+          }
+          return <div>empty list</div>;
+        }
+      }
+      ReactDOM.render(
+        <div>
+          <List list={[1, 2, 3, 4, 5]} />
+          <List />
+        </div>,
+        $('#root')
+      );
+    </script>
+  </body>
+</html>
