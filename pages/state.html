@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="../assets/js/react.development.js"></script>
+    <script src="../assets/js/react-dom.development.js"></script>
+    <script src="../assets/js/babel.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Clock extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { time: new Date() };
+        }
+        render() {
+          return <div>It's {this.state.time.toLocaleTimeString()}</div>;
+        }
+      }
+      ReactDOM.render(<Clock />, $('#root'));
+    </script>
+  </body>
+</html>

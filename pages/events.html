@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="../assets/js/react.development.js"></script>
+    <script src="../assets/js/react-dom.development.js"></script>
+    <script src="../assets/js/babel.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class MyButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            flag: true
+          };
+        }
+        //函数的this对象和构造方式有极大的关系
+        handleClick = (e, value) => {
+          console.log(e, value);
+          this.setState(state => {
+            return {
+              flag: !state.flag
+            };
+          });
+        };
+        /**
+        如果是这样申明的函数 则需要使用bind(this)
+        在constructor中或者在下面的onClick方式中
+        this.handleClick = this.handleClick.bind(this);
+         handleClick(){
+           this
+         }
+        
+        */
+        render() {
+          return (
+            <button
+              className={this.props.className}
+              //下面2种传参都可以 如果不需要参数 就直接this.this.handleClick 或者 this.handleClick.bind(this)
+              //onClick={e => this.handleClick(e, 1)}
+              onClick={this.handleClick.bind(this, event, 1)}
+            >
+              {this.props.text + '-' + (this.state.flag ? 'On' : 'off')}
+            </button>
+          );
+        }
+      }
+      ReactDOM.render(
+        <MyButton className="button" text="hellow" />,
+        $('#root')
+      );
+    </script>
+  </body>
+</html>
