@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="../assets/js/react.development.js"></script>
+    <script src="../assets/js/react-dom.development.js"></script>
+    <script src="../assets/js/babel.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+     let url ='https://www.easy-mock.com/mock/5c3353450be8d31904699b0a/api/project/getName';
+     class HelloWorld extends React.Component{
+         constructor(props){
+             super(props);
+             this.state = {
+                 name:'hellow'
+             };
+         }
+         componentDidMount(){
+             //Fetch api  https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
+             fetch(url,{
+                 'method':'get',
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+             }).then(resp=>{
+                 return resp.json();
+             }).then(json=>{
+                 let code = json.code;
+                 if(code==1){
+                     this.setState(state=>{
+                         return {
+                             name:state.name+'-'+json.data.name
+                         }
+                     })
+                 }
+             });
+         }
+         render(){
+             return <div>{this.state.name}</div>
+         }
+     }
+      ReactDOM.render(<HelloWorld/>, $('#root'));
+    </script>
+  </body>
+</html>
