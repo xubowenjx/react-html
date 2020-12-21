@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="../assets/js/react.development.js"></script>
+    <script src="../assets/js/react-dom.development.js"></script>
+    <script src="../assets/js/babel.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Parent extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        handleClick() {
+          console.log(this.props);
+          console.log(this.props.children);
+        }
+        render() {
+          return (
+            <div onClick={this.handleClick.bind(this)}>
+              hellow world
+              {this.props.children}
+            </div>
+          );
+        }
+      }
+      class Children extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return <div>hello {this.props.name}</div>;
+        }
+      }
+      let props = { name: "xubowen", age: 20 };
+      ReactDOM.render(
+        <Parent {...props}>
+          <Children name={props.name} />
+          <Children name={props.age} />
+        </Parent>,
+        $("#root")
+      );
+    </script>
+  </body>
+</html>

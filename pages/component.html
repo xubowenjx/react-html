@@ -15,23 +15,34 @@
        *   函数式生命组建
        **/
       function Ndiv(props) {
-        return <div className={props.className || "div"}>{props.text}</div>;
+        return <div className={props.className || 'div'}>{props.text}</div>;
       }
       /**
       继承组件
       */
-      class Mdiv extends React.Component {
+
+      class MyDiv extends React.Component {
         render() {
-          return <div className={this.props.className || "div"}>{this.props.text}</div>;
+          return (
+            <div className={this.props.className || 'div'}>
+              {this.props.text}
+            </div>
+          );
         }
       }
-      let text = "hellow world";
-      let arr = [
-        <Ndiv text={text} className="hellowdiv" key="1" />,
-        <Mdiv text={text} key="2"/>];
-        //传入数组
-      let bg = (<div>{arr}</div>)
-      ReactDOM.render(bg, $("#root"));
+      let textContent = 'hellow world';
+
+      //传入数组
+      let bg = (
+        <div>
+          {
+            [1, 2].map(el => {
+            return <MyDiv className='mydiv' text={textContent} key={el} />;
+          })
+          }
+        </div>
+      );
+      ReactDOM.render(bg, $('#root'));
     </script>
   </body>
 </html>

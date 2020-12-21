@@ -12,36 +12,38 @@
     <div id="root"></div>
     <script type="text/babel">
       class HelloWorld extends React.Component {
-          constructor(props){
-            super(props)
-            this.state = {
-                time:new Date(),
-                timer:null
-            }
-            console.log('constroctor');
-
-          }
-          componentDidMount(){
-            console.log('didmount');
-            let timer = setInterval(() => {
-                this.setState({
-                    time:new Date()
-                })
-            }, 1000);
-            this.setState({
-                timer:timer
-            });
-          }
-          componentWillUnmount(){
-              console.log('销毁前');
-             clearInterval(this.state.timer);
-
-          }
-          render(){
-              return <div>{this.state.time.toString()}</div>
-          }
+        constructor(props) {
+          super(props);
+          this.state = {
+            time: new Date(),
+            timer: null,
+          };
+          console.log('constroctor');
+        }
+        componentWillMount() {
+          console.log('componentWillMount');
+        }
+        componentDidMount() {
+          console.log('didmount');
+          // let timer = setInterval(() => {
+          //   this.setState({
+          //     time: new Date(),
+          //   });
+          // }, 1000);
+          // this.setState({
+          //   timer: timer,
+          // });
+        }
+        componentWillUnmount() {
+          console.log('销毁前');
+          clearInterval(this.state.timer);
+        }
+        render() {
+          console.log('render');
+          return <div>{this.state.time.toString()}</div>;
+        }
       }
-      ReactDOM.render(<HelloWorld/>, $("#root"));
+      ReactDOM.render(<HelloWorld />, $('#root'));
     </script>
   </body>
 </html>

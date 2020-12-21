@@ -10,6 +10,7 @@
   </head>
   <body>
     <div id="root"></div>
+    <div id="readme"></div>
     <script type="text/babel">
       class ListItem extends React.Component {
         render() {
@@ -27,13 +28,16 @@
         render() {
           let list = this.props.list;
           if (list && list.length > 0) {
-            return list.map(el => (
-              <ListItem
-                text={el}
-                key={el}
-                click={this.handleClick.bind(this, el)}
-              />
-            ));
+            return list.map(
+              el =>
+                el > 1 && ( // 渲染值大于1的部分
+                  <ListItem
+                    text={el}
+                    key={el}
+                    click={this.handleClick.bind(this, el)}
+                  />
+                )
+            );
           }
           return <div>empty list</div>;
         }
@@ -43,7 +47,7 @@
           <List list={[1, 2, 3, 4, 5]} />
           <List />
         </div>,
-        $('#root')
+        $("#root")
       );
     </script>
   </body>

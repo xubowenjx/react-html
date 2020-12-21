@@ -14,13 +14,30 @@
       class Clock extends React.Component {
         constructor(props) {
           super(props);
-          this.state = { time: new Date() };
+          this.state = { time: new Date(), xbw: { name: "xbw", age: 12 } };
         }
+        onClick = () => {
+          this.setState((preState) => ({
+            xbw: {
+              ...preState.xbw,
+              address: "xxxccvbb" + new Date().getTime()
+            }
+          }));
+          console.log(this.state);
+        };
+
         render() {
-          return <div>It's {this.state.time.toLocaleTimeString()}</div>;
+          return (
+            <div>
+              <div>It's {this.state.time.toLocaleTimeString()}</div>
+              <div>
+                <button onClick={this.onClick}>hello</button>{" "}
+              </div>
+            </div>
+          );
         }
       }
-      ReactDOM.render(<Clock />, $('#root'));
+      ReactDOM.render(<Clock />, $("#root"));
     </script>
   </body>
 </html>
